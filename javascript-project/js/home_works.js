@@ -9,34 +9,80 @@ const regExp = /^(?![!@#$%^&*()+=\-[\]{}|;:'",.<>/?]).*[0-9a-zA-Z.]{6,30}@gmail.
 
 gmailCheck.onclick = () =>{
     if (regExp.test(gmailInput.value)) {
-        gmailResult.innerHTML = 'корректное имя пользователя'
+        gmailResult.innerHTML = 'хокаге одобрил!!!'
         gmailResult.style.color = 'green'
     }else {
-        gmailResult.innerHTML = 'это имя пользователя некорректно'
+        gmailResult.innerHTML = 'хокаге не одобряет введённый gmail'
         gmailResult.style.color = 'red'
     }
 }
 
 //recurs
 
-const parentBlock = document.querySelector('.parent_block')
 const childBlock = document.querySelector('.child_block')
 
-let count = 0
-
-
-// let colorIndex = 0;
-// const colors = ['blue', 'red', 'green', 'yellow', 'purple'];
+let positionX = 0
+let positionY = 0
 
 const moveBlock =()=>{
-    if (count < parentBlock.clientWidth - childBlock.clientWidth){
-        count += 50
-        childBlock.style.left = count + 'px'
-
-
-        // colorIndex = (colorIndex + 1) % colors.length;
-        // childBlock.style.backgroundColor = colors[colorIndex];
-        setTimeout(moveBlock, 1000)
+    if (positionX < 650 && positionY === 0){
+        positionX++
+        childBlock.style.left=`${positionX}px`
+        setTimeout(moveBlock, 1)
+    }else if (positionX >= 650 && positionY < 400){
+        positionY++
+        childBlock.style.top=`${positionY}px`
+        setTimeout(moveBlock, 1)
+    }else if (positionX > 0  && positionY === 400){
+        positionX--
+        childBlock.style.left=`${positionX}px`
+        setTimeout(moveBlock, 1)
+    }else if (positionX === 0 && positionY > 0){
+        positionY--
+        childBlock.style.top=`${positionY}px`
+        setTimeout(moveBlock, 1)
     }
+
+
 }
 moveBlock()
+
+//time
+const seconds = document.querySelector('#seconds')
+const start_button = document.querySelector('#start')
+const stop_button = document.querySelector('#stop')
+const resume_button = document.querySelector('#resume')
+const reset_button = document.querySelector('#reset')
+
+let time = 0
+let interval
+const timer =()=>{
+    if(time < 750){
+        time++
+        seconds.innerHTML = time
+    }
+}
+
+start_button.addEventListener('click', () => {
+    interval = setInterval(timer, 10)
+
+})
+
+stop_button.addEventListener('click', ()=>{
+    clearInterval(interval)
+    start_button.disabled = true
+})
+
+resume_button.addEventListener('click', ()=>{
+    interval = setInterval(timer, 10)
+    
+})
+
+reset_button.addEventListener('click', ()=>{
+    clearInterval(interval);
+    time = 0;
+    seconds.innerHTML = time
+    start_button.disabled = false
+
+})
+

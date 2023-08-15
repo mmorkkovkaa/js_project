@@ -30,27 +30,40 @@
 /* MOVE BLOCK */
 
 .move_block {
-    background: black;
+    /*background: black;*/
     padding: 100px 0;
+    background-image: url("../images/naruto_bi.jpg");
+    background-size: cover;
+
+
 }
 
 .parent_block {
-    height: 500px;
-    width: 500px;
-    border: 2px solid orange;
+    display: flex;
+    height: 600px;
+    width: 800px;
     position: relative;
     margin: 0 auto;
 }
 
+.parent_block img {
+    height: 319px;
+    width: 235px;
+
+}
+
 .child_block {
     position: absolute;
-    width: 50px;
-    height: 50px;
-    background: red;
+}
+.child_block img{
+    width: 200px;
+    height: 200px;
+
 }
 
 .inner_move_block {
     margin-top: 50px;
+
 }
 
 /* STOP WATCH */
@@ -62,7 +75,7 @@
     font-size: 80px;
     height: 100px;
     width: 100%;
-    border-bottom: 1px solid orange;
+    border-bottom: 1px solid black;
     margin-top: 40px;
 }
 
@@ -74,7 +87,7 @@
 
 .stopwatch {
     padding: 100px 0;
-    background: black;
+    background: orange;
 }
 
 .time_buttons {
