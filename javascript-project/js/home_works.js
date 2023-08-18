@@ -75,7 +75,7 @@ stop_button.addEventListener('click', ()=>{
 
 resume_button.addEventListener('click', ()=>{
     interval = setInterval(timer, 10)
-    
+
 })
 
 reset_button.addEventListener('click', ()=>{
