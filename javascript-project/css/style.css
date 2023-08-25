@@ -218,6 +218,12 @@
     color: white;
 }
 
+.modal_content img {
+    width: 377px;
+    height: 366px;
+
+}
+
 .modal_input, .btn_min {
     width: 100% !important;
     margin-top: 10px;

@@ -89,19 +89,27 @@
 /*----------CONVERTER----------*/
 
 .converter {
-    padding: 100px 0;
-    background-color: black;
+    padding: 100px 50px;
+    background-image: url("https://avatars.dzeninfra.ru/get-zen_doc/3414159/pub_60f81b78bbe8c109b0088bd3_610db2e34e48b14821e9752b/scale_1200");
+    background-size: cover;
 }
 
 .inner_converter {
     margin-top: 50px;
+    padding-bottom: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     row-gap: 30px;
+    background-color: rgba(255, 255, 255, 0.62);
+    border-radius: 40px;
+    box-shadow: 2px 4px 4px rgb(255, 100, 0);
 }
-
+.inner_converter h3 {
+    color: #fdb600;
+    text-shadow: -1px -1px 0 rgb(255, 115, 0), 1px -1px 0 black, -1px 1px 0 #e08d2c, 1px 1px 0 black;
+}
 .inner_converter > div {
     display: flex;
     flex-direction: column;

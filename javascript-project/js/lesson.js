@@ -72,5 +72,59 @@ tabsParent.onclick =(event)=>{
     }
 }
 
+//CONVERTER
+const ryeo =document.querySelector('#ryeo')
+const som =document.querySelector('#som')
+const usd =document.querySelector('#usd')
+//
+
+const converter = (element,target1, target2, isTrue)=>{
+    element.oninput = () => {
+        const request = new XMLHttpRequest()
+        request.open("GET", "../data/converter.json")
+        request.setRequestHeader("Content-type","application/json")
+        request.send()
+        request.onload = ()=>{
+            const response = JSON.parse(request.response)
+            if(isTrue){
+                target1.value = (element.value / response.usd ).toFixed(2)
+                target2.value = (element.value / response.ryeo_som ).toFixed(2)
+            }else if(element === usd) {
+                target1.value = (element.value * response.usd ).toFixed(2)
+                target2.value = (element.value * response.ryeo_usd ).toFixed(2)
+            }else {
+                target1.value = (element.value * response.ryeo_usd).toFixed(2)
+                target2.value = (element.value * response.ryeo_som).toFixed(2)
+            }
+            element.value === ''? target1.value = '' : null
+            element.value === '' && (target1.value = '')
+            element.value === ''? target2.value = '' : null
+            element.value === '' && (target2.value = '')
+        }
+
+    }
+}
+
+converter(som, usd, ryeo,true)
+converter(usd, som, ryeo)
+converter(ryeo, usd, som)
+
+//converter(som, usd, ryeo,true)
+//converter(usd, som, ryeo)
+
+
+
+// som.addEventListener('input', (event)=>{
+//     const request = new XMLHttpRequest()
+//     request.open("GET", "../data/converter.json")
+//     request.setRequestHeader("Content-type","application/json")
+//     request.send()
+//
+//     request.addEventListener('load', ()=>{
+//         const response = JSON.parse(request.response)
+//         usd.value = (som.value / response.usd ).toFixed(2)
+//
+//     })
+// })
 
 
