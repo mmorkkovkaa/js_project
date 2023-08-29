@@ -109,22 +109,48 @@ converter(som, usd, ryeo,true)
 converter(usd, som, ryeo)
 converter(ryeo, usd, som)
 
-//converter(som, usd, ryeo,true)
-//converter(usd, som, ryeo)
+//CARD SWITCHER
 
+const card = document.querySelector('.card')
+const btnPrev = document.querySelector('#btn-prev')
+const btnNext = document.querySelector('#btn-next')
 
+let count = 1
 
-// som.addEventListener('input', (event)=>{
-//     const request = new XMLHttpRequest()
-//     request.open("GET", "../data/converter.json")
-//     request.setRequestHeader("Content-type","application/json")
-//     request.send()
-//
-//     request.addEventListener('load', ()=>{
-//         const response = JSON.parse(request.response)
-//         usd.value = (som.value / response.usd ).toFixed(2)
-//
-//     })
-// })
+const infoCard =()=>{
+    fetch(`https://jsonplaceholder.typicode.com/todos/${count}`)
+        .then(response => response.json())
+        .then(data=>{
+            card.innerHTML = `
+            <p>${data.title}</p>
+            <p style = "color : ${data.completed ? 'green':'red'}">${data.completed}</p>
+            <span>${data.id}</span>
+            `
+        })
+}
 
+infoCard()
 
+btnNext.onclick = ()=>{
+    if( count <= 199){
+        count++
+    }else {
+        count = 1
+    }
+    infoCard()
+}
+
+btnPrev.onclick = ()=>{
+    if (count > 1) {
+        count--
+    } else {
+        count = 200
+    }
+    infoCard()
+}
+
+//2 task
+
+fetch("https://jsonplaceholder.typicode.com/posts")
+    .then((response)=> response.json())
+    .then((data)=> console.log(data))

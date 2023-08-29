@@ -74,5 +74,47 @@ prev.onclick = () => {
 
 autoSlider(index)
 
+//json-photo-card
 
-console.log('Hui')
+const button = document.querySelector('.btn_push');
+const hokagesInfo = document.querySelector('.hokages');
+let infoDisplayed = false; // Отслеживание, отображается ли информация в данный момент
+
+button.addEventListener('click', () => {
+    // Если информация уже отображается, уберите её и сбросьте состояние
+    if (infoDisplayed) {
+        hokagesInfo.innerHTML = '';
+        infoDisplayed = false;
+        return;
+    }
+
+    const request = new XMLHttpRequest();
+    request.open('GET', 'data/peoples.json');
+    request.setRequestHeader('Content-type', 'application/json');
+    request.send();
+
+    request.addEventListener('load', () => {
+        const hokages = JSON.parse(request.response);
+        hokages.forEach(person => {
+            const div = document.createElement('div');
+            div.classList.add('card');
+            div.innerHTML = `
+                <img src="${person.image}" alt="${person.name}">
+                <h5>${person.name}</h5>
+                <h6>Hokage's number: ${person.number}</h6>
+                <span>Abilities: ${person.abilities}</span>
+            `;
+            hokagesInfo.append(div);
+
+            div.addEventListener('mouseenter', () => {
+                div.style.backgroundColor = 'orange';
+            });
+            div.addEventListener('mouseleave', () => {
+                div.style.backgroundColor = null;
+            });
+        });
+
+        // Отметьте, что информация отображается
+        infoDisplayed = true;
+    });
+});
