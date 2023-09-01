@@ -57,7 +57,7 @@ const reset_button = document.querySelector('#reset')
 let time = 0
 let interval
 const timer =()=>{
-    if(time < 750){
+    if(time < 720){
         time++
         seconds.innerHTML = time
     }

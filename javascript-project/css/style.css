@@ -2,7 +2,7 @@
 
 .header {
     height: 80px;
-    background: #2c2d2f;
+    background: #fcfcfc;
     display: flex;
     align-items: center;
     width: 100%;
@@ -55,7 +55,9 @@
 
 .main_block {
     padding: 100px 0;
-    background: black;
+    /*background: black;*/
+    background-image: url("https://abrakadabra.fun/uploads/posts/2021-12/1639615376_7-abrakadabra-fun-p-naruto-skala-khokage-7.jpg");
+    background-size: cover;
 }
 
 /* BUTTONS COLOR PICKER */
@@ -96,7 +98,7 @@
 
 .slider_block {
     padding: 100px 0;
-    background: black;
+    background: #030303;
 }
 
 .slider {
@@ -104,8 +106,8 @@
     width: 100%;
     height: 300px;
     overflow: hidden;
-    border: 3px solid orange;
-    border-radius: 20px;
+    box-shadow: 2px 4px 4px rgb(255, 100, 0);
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -120,17 +122,18 @@
     height: 100%;
     display: none;
     transition: opacity 0.5s ease-in-out;
+
 }
 
 .slide_card {
-    color: white;
+    color: #fcfcfc;
     margin: 0 auto;
     width: 500px;
     text-align: center;
 }
 
 .slide_card h3 {
-    color: white;
+    color: #ff5500;
     text-transform: uppercase;
     font-size: 22px;
 }
@@ -264,7 +267,6 @@ audio {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background-color: rgba(255, 255, 255, 0.32);
 
 }
 /* MODAL */

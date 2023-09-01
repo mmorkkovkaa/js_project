@@ -19,9 +19,10 @@ body {
     height: 50px;
     font-size: 20px;
     cursor: pointer;
-    border: 1px solid orange;
-    background: black;
-    color: orange;
+    background-color: black;
+    color: white;
+    box-shadow: 2px 4px 4px rgb(255, 100, 0);
+    border-radius: 10px;
 }
 
 .btn:hover {

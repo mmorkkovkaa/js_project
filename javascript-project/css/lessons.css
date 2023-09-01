@@ -2,17 +2,19 @@
 /* PHONE CHECKER */
 
 .phone_block {
-    background: black;
+    background-size: cover;
     padding: 100px 0;
+    background-image: url("https://celes.club/uploads/posts/2022-05/1653116066_6-celes-club-p-krasivii-fon-naruto-krasivie-7.png");
 }
 
 .inner_phone_block {
     margin-top: 50px;
     display: flex;
     justify-content: space-evenly;
-    border: 1px solid orange;
+    background-color: rgba(255, 255, 255, 0.62);
+    border-radius: 40px;
+    box-shadow: 2px 4px 4px rgb(255, 100, 0);
     height: 300px;
-    border-radius: 20px;
     align-items: center;
 }
 
@@ -30,15 +32,16 @@
 /* TAB SLIDER */
 
 .tab_slider {
-    background: black;
+    background-color: black;
     padding: 100px 0;
 }
 
 .tab_content_block {
     width: 700px;
-    border: 1px solid orange;
+    background-color: rgba(255, 255, 255, 0.62);
+    border-radius: 40px;
+    box-shadow: 2px 4px 4px rgb(255, 100, 0);
     padding: 20px;
-    border-radius: 10px;
     text-align: center;
     display: flex;
     align-items: center;
@@ -48,7 +51,7 @@
 }
 
 .tab_content_block p {
-    color: white;
+    color: #030303;
     margin-top: 10px;
     text-align: justify;
 }
@@ -63,8 +66,10 @@
 .tab_content_item {
     padding: 10px;
     height: 30px;
+    background-color: black;
     color: white;
-    border: 1px solid orange;
+    box-shadow: 2px 4px 4px rgb(255, 100, 0);
+    border-radius: 10px;
     text-align: center;
     font-size: 20px;
     cursor: pointer;
@@ -74,7 +79,9 @@
 
 .tab_content_item_active {
     background: orange;
-    color: black;
+    color: #030303;
+    box-shadow: 2px 4px 4px rgb(255, 100, 0);
+    border-radius: 10px;
     font-weight: 600;
     border: 1px solid white;
 }
@@ -118,14 +125,17 @@
 /*------CARD SWITCHER------*/
 
 .card_switcher {
-    background-color: black;
+    background-size: cover;
+    background-image: url("https://celes.club/uploads/posts/2022-10/1667232811_1-celes-club-p-klan-uchikha-art-pinterest-1.jpg");
     padding: 100px 0;
 }
 
 .card {
     width: 500px;
     height: 150px;
-    border: 1px solid #F79300;
+    background-color: rgba(255, 255, 255, 0.62);
+    border-radius: 40px;
+    box-shadow: 2px 4px 4px rgb(255, 100, 0);
     text-align: center;
     display: flex;
     flex-direction: column;

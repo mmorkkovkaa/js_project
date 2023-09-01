@@ -78,43 +78,42 @@ autoSlider(index)
 
 const button = document.querySelector('.btn_push');
 const hokagesInfo = document.querySelector('.hokages');
-let infoDisplayed = false; // Отслеживание, отображается ли информация в данный момент
+let infoDisplayed = false;
 
-button.addEventListener('click', () => {
-    // Если информация уже отображается, уберите её и сбросьте состояние
+button.addEventListener('click', async () => {
     if (infoDisplayed) {
         hokagesInfo.innerHTML = '';
         infoDisplayed = false;
         return;
     }
 
-    const request = new XMLHttpRequest();
-    request.open('GET', 'data/peoples.json');
-    request.setRequestHeader('Content-type', 'application/json');
-    request.send();
+    try {
+        const response = await fetch('data/peoples.json');
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+    const hokages = await response.json();
 
-    request.addEventListener('load', () => {
-        const hokages = JSON.parse(request.response);
-        hokages.forEach(person => {
-            const div = document.createElement('div');
-            div.classList.add('card');
-            div.innerHTML = `
+    hokages.forEach(person => {
+        const div = document.createElement('div');
+        div.classList.add('card');
+        div.innerHTML = `
                 <img src="${person.image}" alt="${person.name}">
                 <h5>${person.name}</h5>
                 <h6>Hokage's number: ${person.number}</h6>
                 <span>Abilities: ${person.abilities}</span>
             `;
-            hokagesInfo.append(div);
+        hokagesInfo.append(div);
 
-            div.addEventListener('mouseenter', () => {
-                div.style.backgroundColor = 'orange';
-            });
-            div.addEventListener('mouseleave', () => {
-                div.style.backgroundColor = null;
-            });
-        });
-
-        // Отметьте, что информация отображается
+        div.addEventListener('mouseenter', () => {
+            div.style.backgroundColor = 'orange';
+        })
+        div.addEventListener('mouseleave', () => {
+            div.style.backgroundColor = null;
+        })
+    })
         infoDisplayed = true;
-    });
-});
+    } catch (error) {
+        console.error('Error:', error);
+    }
+})

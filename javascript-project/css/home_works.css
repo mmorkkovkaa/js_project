@@ -2,17 +2,23 @@
 /* GMAIL BLOCK */
 
 .gmail_block {
-    background: black;
+    background-image: url("https://abrakadabra.fun/uploads/posts/2022-01/1641360824_8-abrakadabra-fun-p-zadnii-fon-anime-naruto-9.jpg");
     padding: 100px 0;
+    background-size: cover;
+}
+
+.gmail_block h3 {
+    color: #030303;
 }
 
 .inner_gmail_block {
     margin-top: 50px;
     display: flex;
     justify-content: space-evenly;
-    border: 1px solid orange;
+    background-color: rgba(255, 255, 255, 0.62);
+    border-radius: 40px;
+    box-shadow: 2px 4px 4px rgb(255, 100, 0);
     height: 300px;
-    border-radius: 20px;
     align-items: center;
 }
 

@@ -78,34 +78,42 @@ const som =document.querySelector('#som')
 const usd =document.querySelector('#usd')
 //
 
-const converter = (element,target1, target2, isTrue)=>{
-    element.oninput = () => {
-        const request = new XMLHttpRequest()
-        request.open("GET", "../data/converter.json")
-        request.setRequestHeader("Content-type","application/json")
-        request.send()
-        request.onload = ()=>{
-            const response = JSON.parse(request.response)
-            if(isTrue){
-                target1.value = (element.value / response.usd ).toFixed(2)
-                target2.value = (element.value / response.ryeo_som ).toFixed(2)
-            }else if(element === usd) {
-                target1.value = (element.value * response.usd ).toFixed(2)
-                target2.value = (element.value * response.ryeo_usd ).toFixed(2)
-            }else {
-                target1.value = (element.value * response.ryeo_usd).toFixed(2)
-                target2.value = (element.value * response.ryeo_som).toFixed(2)
-            }
-            element.value === ''? target1.value = '' : null
-            element.value === '' && (target1.value = '')
-            element.value === ''? target2.value = '' : null
-            element.value === '' && (target2.value = '')
+const fetchData = async () => {
+    try {
+        const response = await fetch('../data/converter.json')
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
         }
-
+        return await response.json();
+    } catch (error) {
+        console.error('Error:', error)
+        return null
     }
 }
+const converter = async (element, target1, target2, isTrue) => {
+    element.addEventListener('input', async () => {
+        const data = await fetchData()
+        if (!data) return
 
-converter(som, usd, ryeo,true)
+        if (isTrue) {
+            target1.value = (element.value / data.usd).toFixed(2)
+            target2.value = (element.value / data.ryeo_som).toFixed(2)
+        } else if (element === usd) {
+            target1.value = (element.value * data.usd).toFixed(2)
+            target2.value = (element.value * data.ryeo_usd).toFixed(2)
+        } else {
+            target1.value = (element.value * data.ryeo_usd).toFixed(2)
+            target2.value = (element.value * data.ryeo_som).toFixed(2)
+        }
+
+        if (element.value === '') {
+            target1.value = ''
+            target2.value = ''
+        }
+    })
+}
+
+converter(som, usd, ryeo, true)
 converter(usd, som, ryeo)
 converter(ryeo, usd, som)
 
@@ -117,16 +125,20 @@ const btnNext = document.querySelector('#btn-next')
 
 let count = 1
 
-const infoCard =()=>{
-    fetch(`https://jsonplaceholder.typicode.com/todos/${count}`)
-        .then(response => response.json())
-        .then(data=>{
-            card.innerHTML = `
+const infoCard = async ()=>{
+    try {
+        const response = await fetch(`https://jsonplaceholder.typicode.com/todos/${count}`)
+        if (!response.ok) {
+            throw new Error('Network response was not ok')
+        }
+    const data = await response.json();
+    card.innerHTML = `
             <p>${data.title}</p>
-            <p style = "color : ${data.completed ? 'green':'red'}">${data.completed}</p>
+            <p style="color: ${data.completed ? 'green' : 'red'}">${data.completed}</p>
             <span>${data.id}</span>
-            `
-        })
+        `} catch (error) {
+        console.error('Error:', error)
+    }
 }
 
 infoCard()
@@ -149,8 +161,48 @@ btnPrev.onclick = ()=>{
     infoCard()
 }
 
-//2 task
 
-fetch("https://jsonplaceholder.typicode.com/posts")
-    .then((response)=> response.json())
-    .then((data)=> console.log(data))
+
+//weather
+const cityName = document.querySelector('.cityName')
+const city = document.querySelector('.city')
+const temp = document.querySelector('.temp')
+
+const apiKey = 'e417df62e04d3b1b111abeab19cea714'
+
+
+const citySearch = () => {
+    cityName.addEventListener('input', async (event) => {
+        try {
+            const cityNameValue = event.target.value;
+            const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${cityNameValue}&appid=${apiKey}`)
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok')
+            }
+
+            const data = await response.json()
+
+            city.innerHTML = data.name;
+            temp.innerHTML = `${Math.round(data.main.temp - 273)}&deg;C`
+        } catch (error) {
+            console.error('Error:', error)
+
+            city.innerHTML = 'City not found...'
+            temp.innerHTML = 'enter data correctly!'
+        }
+    })
+}
+
+citySearch()
+
+
+
+
+
+
+
+
+
+
+
